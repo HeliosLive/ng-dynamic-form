@@ -18,7 +18,7 @@ npm run test:changed ||
 }
 
 # # build check
-npm run affected:build ||
+npm run run-many:build ||
 {
   echo 'Build failed! Please fix the bugs. Also, you use this command \'npm run affected:graph'\ to see which part of the project your code affected.';
   false;
