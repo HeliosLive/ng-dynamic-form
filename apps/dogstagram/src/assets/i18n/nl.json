@@ -1,0 +1,83 @@
+{
+  "facility": {
+    "tile": {
+      "title": "This is a Facility"
+    },
+    "form": {
+      "agreement": {
+        "title": "Agreement tile",
+        "tile": {
+          "criteria": {
+            "error": {
+              "required": "Facility criteria is required",
+              "includeCheck": "Facility criteria don't match with the field {{value}}"
+            },
+            "hint": "It represents criteria of the facility",
+            "label": "Facility criteria"
+          },
+          "amount": {
+            "error": {
+              "required": "Facility amount is required",
+              "pattern": "Facility amount should contain only numbers"
+            },
+            "hint": "Set the amount of the items",
+            "placeholder": "Please type the facility amount",
+            "label": "Facility amount"
+          },
+          "button": {
+            "add-criteria": "Add a new criteria"
+          }
+        }
+      },
+      "user": {
+        "title": "User Tile",
+        "tile": {
+          "name": {
+            "error": {
+              "minlength": "Should contain minimum {{value}} digits",
+              "pattern": "Can not contain numbers",
+              "required": "Facility name is required",
+              "whiteSpace": "Facility name can't contain spaces"
+            },
+            "hint": "It's the unique code of the facility",
+            "label": "Facility name",
+            "placeholder": "Please type the facility name"
+          },
+          "kind": {
+            "error": {
+              "maxlength": "Should contain maximum {{value}} digits",
+              "max": "Should be maximum {{value}}",
+              "pattern": "Can not contain numbers",
+              "required": "Facility kind is required",
+              "whiteSpace": "Facility kind can't contain spaces",
+              "includeCheck": "Facility kind don't match with the field {{value}}"
+            },
+            "hint": "It represents kind of the facility",
+            "label": "Facility kind",
+            "placeholder": "Please type the facility kind"
+          },
+          "cost": {
+            "error": {
+              "required": "Facility cost is required",
+              "includeCheck": "Facility cost don't match with the field {{value}}"
+            },
+            "hint": "It represents cost of the facility",
+            "label": "Facility cost"
+          },
+          "quality": {
+            "error": {
+              "required": "Facility quality is required",
+              "includeCheck": "Facility quality don't match with the field {{value}}"
+            },
+            "hint": "It represents quality of the facility",
+            "label": "Facility insurance quality",
+            "placeholder": "Please select a facility insurance quality"
+          },
+          "news": {
+            "label": "I'd like to receive the latest updates"
+          }
+        }
+      }
+    }
+  }
+}

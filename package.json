@@ -2,7 +2,19 @@
   "name": "@ng-dynamic-form",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "affected:graph": "nx affected:graph",
+    "affected:build": "nx affected:build --all",
+    "test": "jest",
+    "test:coverage": "jest --coverage --silent",
+    "test:changed": "jest --onlyChanged",
+    "test:watch": "jest --watch",
+    "jest:clear": "jest --clearCache",
+    "test:ci": "jest --runInBand --coverage --reporters=default --silent",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prepare": "husky install"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "16.0.3",

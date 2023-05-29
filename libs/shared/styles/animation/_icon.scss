@@ -1,0 +1,19 @@
+@keyframes fullCircleSpin {
+  from {
+    transform: rotate(0deg);
+    transform-origin: center;
+  }
+  to {
+    transform: rotate(360deg);
+    transform-origin: center;
+  }
+}
+
+@keyframes circleCompleteAnimation {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}

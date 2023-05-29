@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: var(--ndf-font-family);
+}
+
+html {
+  /**
+     * device width (calculated font-size):
+     * min: 346px (14px) - common: 375px (16px) - max: 431px (20px)
+     * more info:
+     * https://royalfig.github.io/fluid-typography-calculator/
+     * https://chriskirknielsen.com/blog/modern-fluid-typography-with-clamp/
+     */
+  font-size: 1rem;
+  font-size: clamp(0.875rem, 7.15vw - 0.675rem, 1.25rem);
+}
+
+body {
+  margin: 0;
+  background-color: var(--ndf-app-background-color);
+
+  /**
+     * apply a blink to an input with opacity to prevent scrolling when focus on MacOS & iOS
+     */
+  input:focus {
+    animation: reveal 0.01s;
+  }
+}

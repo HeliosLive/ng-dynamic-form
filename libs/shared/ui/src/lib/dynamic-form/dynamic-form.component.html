@@ -1,0 +1,58 @@
+<!-- <form [formGroup]="form">
+  <ng-container *ngIf="formData$ | async as formData">
+    <ng-container *ngFor="let data of formData">
+      <ng-container *ngIf="data.visible">
+        <ng-container *ngIf="data.title as tile">
+          <h3>{{ 'facility.form.' + tile + '.title' | translate }}</h3>
+
+          <ng-container *ngFor="let field of data.fields">
+            <ng-container *ngIf="field.visible">
+              <ng-container [ngSwitch]="field.type">
+                <ndf-ui-textbox
+                  *ngSwitchCase="'textbox'"
+                  [formControlName]="field.name"
+                  [field]="field.name"
+                  [tile]="tile"
+                  prefix="facility"
+                  [isHint]="true"
+                ></ndf-ui-textbox>
+                <ndf-ui-checkbox
+                  *ngSwitchCase="'checkbox'"
+                  [formControlName]="field.name"
+                  [field]="field.name"
+                  [tile]="tile"
+                  prefix="facility"
+                ></ndf-ui-checkbox>
+                <ng-container
+                  *ngIf="
+                    valueData$ | async | formTileValueFilter: tile as valueData
+                  "
+                >
+                  <ndf-ui-radio
+                    *ngSwitchCase="'radio'"
+                    [formControlName]="field.name"
+                    [field]="field.name"
+                    [tile]="tile"
+                    prefix="facility"
+                    formFieldDataParse
+                    [data]="valueData.fields | formFieldDataParse: field.name"
+                  ></ndf-ui-radio>
+                  <ndf-ui-dropdown
+                    *ngSwitchCase="'dropdown'"
+                    [formControlName]="field.name"
+                    [field]="field.name"
+                    [tile]="tile"
+                    prefix="facility"
+                    [data]="valueData.fields | formFieldDataParse: field.name"
+                  ></ndf-ui-dropdown>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</form>
+
+<p>form data : {{ form.value | json }}</p> -->

@@ -1,0 +1,236 @@
+/** Content order
+- root
+  -- font
+  -- alphabetical order of all components
+  -- svg
+  -- color aliases
+- html data-theme (light-dark)
+*/
+
+:root {
+  /* Font families */
+  --ndf-font-family: 'Roboto', sans-serif;
+  --ndf-font-family-monospace: 'Roboto Mono', monospace;
+
+  /* Font size */
+  --ndf-font-h1-size: 3rem;
+  --ndf-font-h2-size: 2.25rem;
+  --ndf-font-h3-size: 2rem;
+  --ndf-font-h4-size: 1.5rem;
+  --ndf-font-h5-size: 1.25rem;
+  --ndf-font-h6-size: 1.125rem;
+  --ndf-font-subheading-1-size: 1.125rem;
+  --ndf-font-subheading-2-size: 1rem;
+  --ndf-font-subheading-bold-2-size: 1rem;
+  --ndf-font-subheading-bold-3-size: 0.875rem;
+  --ndf-font-p1-size: 0.875rem;
+  --ndf-font-p2-size: 0.75rem;
+  --ndf-font-caption-size: 0.625rem;
+
+  // h1, h2, h3, h4, h5, h6, p, label, hint, optional, span, big, small, strong, li, a, b, i
+  // blockquote, caption, code, textarea, sub, s, div
+
+  /* Font weight */
+  --ndf-font-h1-weight: 500;
+  --ndf-font-h2-weight: 500;
+  --ndf-font-h3-weight: 500;
+  --ndf-font-h4-weight: 500;
+  --ndf-font-h5-weight: 500;
+  --ndf-font-h6-weight: 500;
+  --ndf-font-subheading-1-weight: 400;
+  --ndf-font-subheading-2-weight: 400;
+  --ndf-font-subheading-bold-2-weight: 500;
+  --ndf-font-subheading-bold-3-weight: 500;
+  --ndf-font-p1-weight: 400;
+  --ndf-font-p2-weight: 400;
+  --ndf-font-caption-weight: 400;
+
+  /* Font height */
+  --ndf-font-h1-height: 3.25rem;
+  --ndf-font-h2-height: 2.75rem;
+  --ndf-font-h3-height: 2.5rem;
+  --ndf-font-h4-height: 2rem;
+  --ndf-font-h5-height: 1.75rem;
+  --ndf-font-h6-height: 1.625rem;
+  --ndf-font-subheading-1-height: 1, 625rem;
+  --ndf-font-subheading-2-height: 1.5rem;
+  --ndf-font-subheading-bold-2-height: 1.5rem;
+  --ndf-font-subheading-bold-3-height: 1.25rem;
+  --ndf-font-p1-height: 1.25rem;
+  --ndf-font-p2-height: 1.25rem;
+  --ndf-font-caption-height: 1rem;
+
+  /* App color */
+  --ndf-app-background-color: rgba(var(--ndf-color-neutral-6), 1);
+
+  /* Button size */
+  --ndf-button-size-small: 1rem;
+  --ndf-button-size-medium: 2rem;
+  --ndf-button-size-large: 3rem;
+  --ndf-button-border-radius: 0.25rem;
+  --ndf-button-border-style: solid;
+  --ndf-button-border-width: 0.125rem;
+
+  /* Checkbox size */
+  --ndf-checkbox-height: 1.5rem;
+  --ndf-checkbox-input-border-style: solid;
+  --ndf-checkbox-input-border-width: 0.125rem;
+
+  /* Checkbox color */
+  --ndf-checkbox-background-color: rgba(var(--ndf-color-hint), 1);
+  --ndf-checkbox-border-color: rgba(var(--ndf-color-moon), 0.1);
+  --ndf-checkbox-input-border-color: rgba(var(--ndf-color-primary), 1);
+
+  /* Dialog color */
+  --ndf-dialog-overlap-background-color: rgba(var(--ndf-color-black), 0.5);
+  --ndf-dialog-background-color: rgba(var(--ndf-color-neutral-6), 1);
+
+  /* Svg color */
+  --ndf-svg-checkbox-path-color: rgba(var(--ndf-color-neutral-6), 1);
+  --ndf-svg-checkbox-rect-color: rgba(var(--ndf-color-primary), 1);
+  --ndf-svg-loading-circle-color: rgba(var(--ndf-color-neutral-6), 0.3);
+  --ndf-svg-loading-rotate-color: rgba(var(--ndf-color-neutral-6), 1);
+
+  /* Constant colors */
+  --ndf-color-white: #ffffff;
+  --ndf-color-black: #000000;
+  --ndf-color-gray: #333333;
+}
+
+html[data-theme='light'] {
+  /* Color palette */
+  --ndf-color-sun: #ffffff;
+  --ndf-color-moon: #000000;
+
+  --ndf-color-gray-9: #202122;
+  --ndf-color-gray-8: #414244;
+  --ndf-color-gray-7: #5f6063;
+  --ndf-color-gray-6: #737578;
+  --ndf-color-gray-5: #9c9ea0;
+  --ndf-color-gray-4: #bbbcbe;
+  --ndf-color-gray-3: #e0e0e1;
+  --ndf-color-gray-2: #ededee;
+  --ndf-color-gray-1: #f5f5f5;
+
+  --ndf-color-orange-9: #801604;
+  --ndf-color-orange-8: #e03000;
+  --ndf-color-orange-7: #e05a00;
+  --ndf-color-orange-6: #fd6400;
+  --ndf-color-orange-5: #ff8533;
+  --ndf-color-orange-4: #ffbc1f;
+  --ndf-color-orange-3: #ffd983;
+  --ndf-color-orange-2: #fff3f0;
+  --ndf-color-orange-1: #fff9eb;
+
+  --ndf-color-blue-8: #000060;
+  --ndf-color-blue-7: #000faa;
+  --ndf-color-blue-6: #0047cc;
+  --ndf-color-blue-5: #0058ff;
+  --ndf-color-blue-4: #337aff;
+  --ndf-color-blue-3: #0089ff;
+  --ndf-color-blue-2: #58c9ff;
+  --ndf-color-blue-1: #f0faff;
+
+  --ndf-color-green-8: #006e46;
+  --ndf-color-green-7: #009354;
+  --ndf-color-green-6: #009456;
+  --ndf-color-green-5: #00b269;
+  --ndf-color-green-4: #00cc77;
+  --ndf-color-green-3: #00cd87;
+  --ndf-color-green-2: #55e6b4;
+  --ndf-color-green-1: #f1fdf8;
+
+  /* Color aliases */
+  --ndf-color-primary: var(var(--ndf-color-orange-6));
+  --ndf-color-accent: var(var(--ndf-color-orange-4));
+
+  --ndf-background-color-default: var(--ndf-color-sun);
+  --ndf-background-color-subtle: var(--ndf-color-gray-1);
+  --ndf-background-color-emphasis: var(--ndf-color-blue-8);
+  --ndf-background-color-body: var(--ndf-color-sun);
+  --ndf-background-color-body-subtle: var(--ndf-color-gray-1);
+  --ndf-background-color-backdrop: var(--ndf-color-gray-7);
+  --ndf-background-color-info: var(--ndf-color-blue-1);
+  --ndf-background-color-warning: var(--ndf-color-orange-1);
+  --ndf-background-color-error: var(--ndf-color-orange-2);
+  --ndf-background-color-success: var(--ndf-color-green-1);
+  --ndf-background-color-item: var(--ndf-color-sun);
+  --ndf-background-color-item-hover: var(--ndf-color-gray-2);
+  --ndf-color-item-icon: var(--ndf-color-gray-9);
+  --ndf-color-item-icon-disabled: var(--ndf-color-gray-4);
+  --ndf-color-item-icon-chevron: var(--ndf-color-gray-6);
+  --ndf-color-item-icon-chevron-disabled: var(--ndf-color-gray-4);
+  --ndf-color-info: var(--ndf-color-blue-2);
+  --ndf-color-warning: var(--ndf-color-orange-4);
+  --ndf-color-error: var(--ndf-color-orange-8);
+  --ndf-color-success: var(--ndf-color-green-5);
+}
+
+html[data-theme='dark'] {
+  /* Color palette */
+  --ndf-color-sun: #ffffff;
+  --ndf-color-moon: #000000;
+
+  --ndf-color-gray-9: #202122;
+  --ndf-color-gray-8: #414244;
+  --ndf-color-gray-7: #5f6063;
+  --ndf-color-gray-6: #737578;
+  --ndf-color-gray-5: #9c9ea0;
+  --ndf-color-gray-4: #bbbcbe;
+  --ndf-color-gray-3: #e0e0e1;
+  --ndf-color-gray-2: #ededee;
+  --ndf-color-gray-1: #f5f5f5;
+
+  --ndf-color-orange-9: #801604;
+  --ndf-color-orange-8: #e03000;
+  --ndf-color-orange-7: #e05a00;
+  --ndf-color-orange-6: #fd6400;
+  --ndf-color-orange-5: #ff8533;
+  --ndf-color-orange-4: #ffbc1f;
+  --ndf-color-orange-3: #ffd983;
+  --ndf-color-orange-2: #fff3f0;
+  --ndf-color-orange-1: #fff9eb;
+
+  --ndf-color-blue-8: #000060;
+  --ndf-color-blue-7: #000faa;
+  --ndf-color-blue-6: #0047cc;
+  --ndf-color-blue-5: #0058ff;
+  --ndf-color-blue-4: #337aff;
+  --ndf-color-blue-3: #0089ff;
+  --ndf-color-blue-2: #58c9ff;
+  --ndf-color-blue-1: #f0faff;
+
+  --ndf-color-green-8: #006e46;
+  --ndf-color-green-7: #009354;
+  --ndf-color-green-6: #009456;
+  --ndf-color-green-5: #00b269;
+  --ndf-color-green-4: #00cc77;
+  --ndf-color-green-3: #00cd87;
+  --ndf-color-green-2: #55e6b4;
+  --ndf-color-green-1: #f1fdf8;
+
+  /* Color aliases */
+  --ndf-color-primary: var(var(--ndf-color-orange-6));
+  --ndf-color-accent: var(var(--ndf-color-orange-4));
+
+  --ndf-background-color-default: var(--ndf-color-sun);
+  --ndf-background-color-subtle: var(--ndf-color-gray-1);
+  --ndf-background-color-emphasis: var(--ndf-color-blue-8);
+  --ndf-background-color-body: var(--ndf-color-sun);
+  --ndf-background-color-body-subtle: var(--ndf-color-gray-1);
+  --ndf-background-color-backdrop: var(--ndf-color-gray-7);
+  --ndf-background-color-info: var(--ndf-color-blue-1);
+  --ndf-background-color-warning: var(--ndf-color-orange-1);
+  --ndf-background-color-error: var(--ndf-color-orange-2);
+  --ndf-background-color-success: var(--ndf-color-green-1);
+  --ndf-background-color-item: var(--ndf-color-sun);
+  --ndf-background-color-item-hover: var(--ndf-color-gray-2);
+  --ndf-color-item-icon: var(--ndf-color-gray-9);
+  --ndf-color-item-icon-disabled: var(--ndf-color-gray-4);
+  --ndf-color-item-icon-chevron: var(--ndf-color-gray-6);
+  --ndf-color-item-icon-chevron-disabled: var(--ndf-color-gray-4);
+  --ndf-color-info: var(--ndf-color-blue-2);
+  --ndf-color-warning: var(--ndf-color-orange-4);
+  --ndf-color-error: var(--ndf-color-orange-8);
+  --ndf-color-success: var(--ndf-color-green-5);
+}

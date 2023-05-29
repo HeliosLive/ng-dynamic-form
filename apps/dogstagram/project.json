@@ -15,11 +15,23 @@
         "main": "apps/dogstagram/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/dogstagram/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "stylePreprocessorOptions": {
+          "includePaths": ["libs/shared/styles"]
+        },
         "assets": [
           "apps/dogstagram/src/favicon.ico",
-          "apps/dogstagram/src/assets"
+          "apps/dogstagram/src/assets",
+          {
+            "input": "libs/shared/assets",
+            "glob": "**/*",
+            "output": "assets"
+          }
         ],
-        "styles": ["apps/dogstagram/src/styles.scss"],
+        "styles": [
+          "apps/dogstagram/src/styles.scss",
+          "apps/dogstagram/src/styles/_index.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -27,8 +39,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "2mb",
+              "maximumError": "4mb"
             },
             {
               "type": "anyComponentStyle",

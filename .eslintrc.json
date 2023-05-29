@@ -132,7 +132,7 @@
                 "group": "external"
               },
               {
-                "pattern": "@ndf/**",
+                "pattern": "@ng-dynamic-form/**",
                 "group": "internal",
                 "position": "after"
               },

@@ -1,0 +1,59 @@
+/** Content order
+- root
+  -- font
+  -- alphabetical order of all components
+  -- svg
+*/
+
+@import 'variables/global-variables';
+
+:root {
+  /* Button size - (inside shared global variables) */
+  /* Button color */
+  // ! If the button color aliases stay like this, we can move rgba to the component to remove redundant declarations.
+  --ndf-button-background-color-primary: rgba(var(--ndf-color-primary), 1);
+  --ndf-button-background-color-secondary: rgba(var(--ndf-color-secondary), 1);
+  --ndf-button-background-color-info: rgba(var(--ndf-color-info), 1);
+  --ndf-button-background-color-success: rgba(var(--ndf-color-success), 1);
+  --ndf-button-background-color-warning: rgba(var(--ndf-color-warning), 1);
+  --ndf-button-background-color-danger: rgba(var(--ndf-color-danger), 1);
+
+  --ndf-button-background-color-primary-active: rgba(
+    var(--ndf-color-primary),
+    0.3
+  );
+  --ndf-button-background-color-secondary-active: rgba(
+    var(--ndf-color-secondary),
+    0.3
+  );
+  --ndf-button-background-color-info-active: rgba(var(--ndf-color-info), 0.3);
+  --ndf-button-background-color-success-active: rgba(
+    var(--ndf-color-success),
+    0.3
+  );
+  --ndf-button-background-color-warning-active: rgba(
+    var(--ndf-color-warning),
+    0.3
+  );
+  --ndf-button-background-color-danger-active: rgba(
+    var(--ndf-color-danger),
+    0.3
+  );
+
+  --ndf-button-border-color-primary: rgba(var(--ndf-color-primary), 0.2);
+  --ndf-button-border-color-secondary: rgba(var(--ndf-color-secondary), 0.2);
+  --ndf-button-border-color-info: rgba(var(--ndf-color-info), 0.2);
+  --ndf-button-border-color-success: rgba(var(--ndf-color-success), 0.2);
+  --ndf-button-border-color-warning: rgba(var(--ndf-color-warning), 0.2);
+  --ndf-button-border-color-danger: rgba(var(--ndf-color-danger), 0.2);
+
+  /* Calendar size */
+  --ndf-calendar-margin: 0 auto;
+  --ndf-calendar-input-width: auto;
+
+  /* Svg color - (the rest, inside shared global variables) */
+  --ndf-svg-cancel-color: rgba(var(--ndf-color-neutral-1), 1);
+  --ndf-svg-location-cloud-color: rgba(var(--ndf-color-moon), 0.05);
+  --ndf-svg-location-pin-color: rgba(var(--ndf-color-primary), 1);
+  --ndf-svg-location-pin-shadow-color: rgba(var(--ndf-color-black), 0.2);
+}

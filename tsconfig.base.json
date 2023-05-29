@@ -19,8 +19,19 @@
         "libs/dogstagram/service/src/index.ts"
       ],
       "@ng-dynamic-form/dogstagram/ui": ["libs/dogstagram/ui/src/index.ts"],
+      "@ng-dynamic-form/shared/component": [
+        "libs/shared/component/src/index.ts"
+      ],
+      "@ng-dynamic-form/shared/core": ["libs/shared/core/src/index.ts"],
+      "@ng-dynamic-form/shared/directive": [
+        "libs/shared/directive/src/index.ts"
+      ],
       "@ng-dynamic-form/shared/models": ["libs/shared/models/src/index.ts"],
+      "@ng-dynamic-form/shared/pipe": ["libs/shared/pipe/src/index.ts"],
+      "@ng-dynamic-form/shared/service": ["libs/shared/service/src/index.ts"],
+      "@ng-dynamic-form/shared/token": ["libs/shared/token/src/index.ts"],
       "@ng-dynamic-form/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@ng-dynamic-form/shared/utility": ["libs/shared/utility/src/index.ts"],
       "@ng-dynamic-form/shared/validator": [
         "libs/shared/validator/src/index.ts"
       ]
