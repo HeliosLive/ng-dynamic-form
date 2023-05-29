@@ -14,7 +14,17 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ng-dynamic-form/dogstagram/service": [
+        "libs/dogstagram/service/src/index.ts"
+      ],
+      "@ng-dynamic-form/dogstagram/ui": ["libs/dogstagram/ui/src/index.ts"],
+      "@ng-dynamic-form/shared/models": ["libs/shared/models/src/index.ts"],
+      "@ng-dynamic-form/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@ng-dynamic-form/shared/validator": [
+        "libs/shared/validator/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

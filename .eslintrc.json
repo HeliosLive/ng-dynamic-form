@@ -1,0 +1,299 @@
+{
+  "root": true,
+  "ignorePatterns": ["node_modules", "dist/**", "**/*.d.ts"],
+  "plugins": [
+    "@nx",
+    "@angular-eslint",
+    "@typescript-eslint",
+    "sonarjs",
+    "import",
+    "unused-imports",
+    "sort"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:sonarjs/recommended"
+      ],
+      "rules": {
+        // default
+        "eqeqeq": ["error", "always"],
+        "consistent-return": "error",
+        "import/no-unresolved": "off",
+        "no-console": ["warn", { "allow": ["error", "warn"] }],
+        "no-eq-null": "error",
+        "no-else-return": ["error", { "allowElseIf": false }],
+        "no-implicit-coercion": "error",
+        "no-return-assign": ["error", "always"],
+        "no-return-await": "error",
+        "no-unreachable": "error",
+        "no-useless-constructor": "off",
+        "no-useless-return": "error",
+        "unused-imports/no-unused-imports": "error",
+        "quotes": [
+          2,
+          "single",
+          {
+            "avoidEscape": true
+          }
+        ],
+
+        // angular
+        "@angular-eslint/use-lifecycle-interface": "error",
+        "@angular-eslint/use-pipe-transform-interface": "error",
+
+        // typescript
+        "@typescript-eslint/array-type": "error",
+        "@typescript-eslint/ban-types": "error",
+        "@typescript-eslint/no-require-imports": "error",
+        "@typescript-eslint/no-useless-constructor": "error",
+        "@typescript-eslint/no-explicit-any": "error",
+
+        // refactor - enable it once in a while to double check
+        // "@typescript-eslint/no-unsafe-return": "error",
+        // "@angular-eslint/template/banana-in-box": "error",
+        // "@angular-eslint/template/eqeqeq": "error",
+        // "@typescript-eslint/no-unnecessary-boolean-literal-compare": "error",
+        // "@typescript-eslint/no-base-to-string": "error",
+        // "@typescript-eslint/member-ordering": [
+        //   "error",
+        //   { "default": ["signature", "method", "constructor", "field"] }
+        // ],
+        // "@typescript-eslint/consistent-type-exports": "error",
+        // "@typescript-eslint/consistent-type-imports": [
+        //   "error",
+        //   { "prefer": "type-imports", "useTypeInformation": true }
+        // ],
+        // "no-confusing-arrow": [
+        //   "error",
+        //   { "allowParens": true, "onlyOneSimpleParam": false }
+        // ],
+        // "no-mixed-operators": ["error", { "allowSamePrecedence": false }],
+        // "@typescript-eslint/explicit-function-return-type": [
+        //   "error",
+        //   {
+        //     "allowExpressions": true
+        //   }
+        // ],
+        // "@typescript-eslint/no-inferrable-types": [
+        //   "error",
+        //   {
+        //     "ignoreParameters": true,
+        //     "ignoreProperties": true
+        //   }
+        // ],
+
+        // Sort
+        "sort/export-members": [
+          "error",
+          { "caseSensitive": false, "natural": true }
+        ],
+        "sort/import-members": [
+          "error",
+          { "caseSensitive": false, "natural": true }
+        ],
+        "sort/object-properties": [
+          "error",
+          { "caseSensitive": false, "natural": true }
+        ],
+        "sort/type-properties": [
+          "error",
+          { "caseSensitive": false, "natural": true }
+        ],
+
+        "import/order": [
+          "warn",
+          {
+            "alphabetize": { "caseInsensitive": true, "order": "asc" },
+            "newlines-between": "always",
+            "pathGroups": [
+              {
+                "pattern": "@angular/**",
+                "group": "builtin"
+              },
+              {
+                "pattern": "@rxjs/**",
+                "group": "builtin"
+              },
+              {
+                "pattern": "@ngrx/**",
+                "group": "builtin",
+                "position": "after"
+              },
+              {
+                "pattern": "angular-**",
+                "group": "external"
+              },
+              {
+                "pattern": "@ndf/**",
+                "group": "internal",
+                "position": "after"
+              },
+              {
+                "pattern": "libs/**",
+                "group": "internal",
+                "position": "after"
+              },
+              {
+                "pattern": "../**",
+                "group": "internal",
+                "position": "after"
+              },
+              {
+                "pattern": "./**",
+                "group": "internal",
+                "position": "after"
+              }
+            ],
+            "pathGroupsExcludedImportTypes": ["builtin"]
+          }
+        ],
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "scope-dashboard",
+                "onlyDependOnLibsWithTags": [
+                  "ndf-core",
+                  "ndf-ui",
+                  "ndf-models",
+                  "ndf-service",
+                  "db-service",
+                  "db-ui"
+                ]
+              },
+              {
+                "sourceTag": "scope-dogstagram",
+                "onlyDependOnLibsWithTags": [
+                  "ndf-core",
+                  "ndf-ui",
+                  "ndf-models",
+                  "ndf-service",
+                  "cd-service",
+                  "cd-ui"
+                ]
+              },
+              {
+                "sourceTag": "ndf-ui",
+                "onlyDependOnLibsWithTags": [
+                  "ndf-component",
+                  "ndf-core",
+                  "ndf-service",
+                  "ndf-models",
+                  "ndf-pipe",
+                  "ndf-testing",
+                  "ndf-utility"
+                ]
+              },
+              {
+                "sourceTag": "ndf-component",
+                "onlyDependOnLibsWithTags": [
+                  "ndf-utility",
+                  "ndf-helper",
+                  "ndf-directive"
+                ]
+              },
+              {
+                "sourceTag": "ndf-service",
+                "onlyDependOnLibsWithTags": [
+                  "ndf-core",
+                  "ndf-utility",
+                  "ndf-token",
+                  "ndf-models"
+                ]
+              },
+              {
+                "sourceTag": "ndf-core",
+                "onlyDependOnLibsWithTags": [
+                  "ndf-models",
+                  "ndf-service",
+                  "ndf-validator"
+                ]
+              },
+              {
+                "sourceTag": "ndf-directive",
+                "onlyDependOnLibsWithTags": ["ndf-service"]
+              },
+              {
+                "sourceTag": "ndf-pipe",
+                "onlyDependOnLibsWithTags": ["ndf-models"]
+              },
+              {
+                "sourceTag": "ndf-validator",
+                "onlyDependOnLibsWithTags": ["ndf-models"]
+              },
+              {
+                "sourceTag": "ndf-testing",
+                "onlyDependOnLibsWithTags": ["ndf-models"]
+              },
+              {
+                "sourceTag": "ndf-utility",
+                "onlyDependOnLibsWithTags": [
+                  "ndf-core",
+                  "ndf-models",
+                  "ndf-validator",
+                  "ndf-service"
+                ]
+              },
+              {
+                "sourceTag": "dashboard-service",
+                "onlyDependOnLibsWithTags": ["ndf-models", "ndf-utility"]
+              },
+              {
+                "sourceTag": "dashboard-ui",
+                "onlyDependOnLibsWithTags": [
+                  "ndf-pipe",
+                  "ndf-ui",
+                  "ndf-models",
+                  "ndf-service",
+                  "dashboard-service"
+                ]
+              },
+              {
+                "sourceTag": "dogstagram-service",
+                "onlyDependOnLibsWithTags": ["ndf-models", "ndf-utility"]
+              },
+              {
+                "sourceTag": "dogstagram-ui",
+                "onlyDependOnLibsWithTags": [
+                  "ndf-pipe",
+                  "ndf-ui",
+                  "ndf-models",
+                  "ndf-service",
+                  "dogstagram-service"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+      "env": {
+        "jest": true
+      },
+      "rules": {}
+    }
+  ]
+}

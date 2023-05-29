@@ -1,0 +1,25 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo 'Styling, testing and building the project before committing'
+
+# # linting check
+npm run lint ||
+{
+  echo 'Linting failed! Please fix the bugs by yourself or just try to use \'npm run lint:fix'\ command.';
+  false;
+}
+
+# # testing check
+npm run test:changed ||
+{
+  echo 'Testing failed! Please fix the bugs.';
+  false;
+}
+
+# # build check
+npm run affected:build ||
+{
+  echo 'Build failed! Please fix the bugs. Also, you use this command \'npm run affected:graph'\ to see which part of the project your code affected.';
+  false;
+}
