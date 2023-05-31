@@ -5,9 +5,12 @@ export type FormFieldInput =
   | 'checkbox'
   | 'table';
 
+// ! TO DO: add 'replaceable' option to set the value later on when depends on the other fields
+export type FormFieldAcceptableValue = string | number | boolean;
+
 export interface FormFieldValidate {
   name: 'required' | 'min' | 'minLength' | 'max' | 'maxLength' | 'pattern';
-  value?: string | number | boolean;
+  value?: FormFieldAcceptableValue;
 }
 
 export type FormFieldActionDataRole = 'disable' | 'enable' | 'show' | 'hide';
@@ -21,28 +24,31 @@ export type FormFieldComparison =
 
 export interface FormFieldRelation {
   data: {
-    acceptable?: (number | string | boolean)[];
-    unacceptable?: (number | string | boolean)[];
-    value: number | string | boolean;
+    acceptable?: FormFieldAcceptableValue[];
+    unacceptable?: FormFieldAcceptableValue[];
+    value: FormFieldAcceptableValue;
   }[];
   field: string;
   type: FormFieldComparison;
 }
 
+export interface FormFieldAutoSetData {
+  overwrite?: boolean;
+  set: FormFieldAcceptableValue;
+  value: FormFieldAcceptableValue[];
+}
+
 export interface FormFieldAutoSet {
-  data: {
-    set: number | string | boolean;
-    value: (number | string | boolean)[];
-  }[];
+  data: FormFieldAutoSetData[];
   field: string;
   parentField?: string;
-  type: FormFieldComparison;
+  type: Exclude<FormFieldComparison, 'required'>;
 }
 
 export interface FormFieldAction {
   data: {
     role: FormFieldActionDataRole;
-    value: (number | string | boolean)[];
+    value: FormFieldAcceptableValue[];
   }[];
   field: string;
   type: FormFieldComparison;
@@ -55,12 +61,13 @@ export interface FormField {
   autoSet?: FormFieldAutoSet[];
   disable: boolean;
   group?: FormFieldGroup;
+  isHint?: boolean;
   name: string;
   nesting?: FormField[];
   order: number;
   relations?: FormFieldRelation[];
   type: FormFieldInput;
   validators?: FormFieldValidate[];
-  value?: (string | number | boolean) | (string | number | boolean)[];
+  value?: FormFieldAcceptableValue | FormFieldAcceptableValue[];
   visible: boolean;
 }

@@ -24,6 +24,7 @@ import { NdfDynamicFormBuilderService } from '@ng-dynamic-form/shared/service';
 })
 export class DynamicFormComponent implements OnInit, OnDestroy {
   @Input({ required: true }) form!: FormGroup;
+  @Input({ required: true }) prefix!: string;
   @Input({ required: true }) valueData$!: Observable<FormValueData[]>;
   @Input({ required: true }) formData$!: Observable<FormTile[]>;
   private destroy$ = new Subject<void>();

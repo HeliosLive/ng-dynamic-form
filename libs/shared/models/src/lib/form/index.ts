@@ -1,10 +1,12 @@
 export type {
   FormField,
+  FormFieldAcceptableValue,
   FormFieldActionDataRole,
+  FormFieldAutoSetData,
   FormFieldComparison,
   FormFieldInput,
   FormFieldRelation,
-  FormFieldValidate,
+  FormFieldValidate
 } from './form-field.interface';
 export type { FormTile } from './form-tile.interface';
 export type { FormValueData } from './form-data-value.interface';

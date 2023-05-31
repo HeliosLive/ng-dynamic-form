@@ -13,15 +13,16 @@
                   [formControlName]="field.name"
                   [field]="field.name"
                   [tile]="tile"
-                  prefix="facility"
-                  [isHint]="true"
+                  [prefix]="prefix"
+                  [isHint]="isHint"
                 ></ndf-ui-textbox>
                 <ndf-ui-checkbox
                   *ngSwitchCase="'checkbox'"
                   [formControlName]="field.name"
                   [field]="field.name"
                   [tile]="tile"
-                  prefix="facility"
+                  [prefix]="prefix"
+                  [isHint]="isHint"
                 ></ndf-ui-checkbox>
                 <ng-container
                   *ngIf="
@@ -33,7 +34,8 @@
                     [formControlName]="field.name"
                     [field]="field.name"
                     [tile]="tile"
-                    prefix="facility"
+                  [prefix]="prefix"
+                  [isHint]="isHint"
                     formFieldDataParse
                     [data]="valueData.fields | formFieldDataParse: field.name"
                   ></ndf-ui-radio>
@@ -42,7 +44,8 @@
                     [formControlName]="field.name"
                     [field]="field.name"
                     [tile]="tile"
-                    prefix="facility"
+                  [prefix]="prefix"
+                    [isHint]="isHint"
                     [data]="valueData.fields | formFieldDataParse: field.name"
                   ></ndf-ui-dropdown>
                 </ng-container>

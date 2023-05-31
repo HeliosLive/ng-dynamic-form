@@ -10,7 +10,11 @@ import {
   tap
 } from 'rxjs';
 
-import type { FormField } from '@ng-dynamic-form/shared/models';
+import type {
+  FormField,
+  FormFieldAcceptableValue,
+  FormFieldAutoSetData
+} from '@ng-dynamic-form/shared/models';
 import {
   DataReOrder,
   formActions,
@@ -33,12 +37,12 @@ export class NdfDynamicFormBuilderService {
     updateOn?: FormUpdateOn
   ): Observable<unknown | undefined> {
     this.assignVariables(form, element, updateOn);
+    this.addFormControls();
+    this.addFormArrays();
+    this.addFormValidations();
+    this.addFormCustomValidators();
 
     return combineLatest([
-      this.addFormControls(),
-      this.addFormArrays(),
-      this.addFormValidations(),
-      this.addFormCustomValidators(),
       this.listenFormActions(),
       this.listenFormAutoSetValues(),
       this.listenFormControlRelations()
@@ -55,7 +59,7 @@ export class NdfDynamicFormBuilderService {
     this.updateOn = updateOn ?? 'change';
   }
 
-  private addFormControls(): Observable<void> {
+  private addFormControls(): void {
     const { name, group, value } = this.element;
     this.form?.addControl(
       name,
@@ -65,14 +69,12 @@ export class NdfDynamicFormBuilderService {
             updateOn: this.updateOn
           })
     );
-
-    return of();
   }
 
-  private addFormArrays(): Observable<void> {
+  private addFormArrays(): void {
     const { name, nesting } = this.element;
 
-    if (!nesting) return of();
+    if (!nesting) return;
 
     const field = <FormArray>this.form.get(`${name}`);
     const combinedDataArray = this.collapseNestingData(nesting);
@@ -88,11 +90,9 @@ export class NdfDynamicFormBuilderService {
 
       field.push(formGroup);
     });
-
-    return of();
   }
 
-  private addFormValidations(): Observable<void> {
+  private addFormValidations(): void {
     const { name, validators, nesting } = this.element;
     const validations = formValidationSet(validators);
     const formControl = this.form.get(`${name}`);
@@ -102,7 +102,7 @@ export class NdfDynamicFormBuilderService {
       formControl?.updateValueAndValidity();
     }
 
-    if (!nesting) return of();
+    if (!nesting) return;
 
     const combinedDataArray = this.collapseNestingData(nesting);
     const nestedFieldControls = (<FormArray>formControl).controls;
@@ -120,104 +120,9 @@ export class NdfDynamicFormBuilderService {
         nestControl?.updateValueAndValidity();
       });
     }
-
-    return of();
   }
 
-  private listenFormActions(): Observable<unknown | undefined> {
-    const { name, actions } = this.element;
-
-    return (
-      this.getFormValueChanges(name)?.pipe(
-        tap(() => {
-          actions?.forEach((action) => {
-            const { data, field } = action;
-            const parentValue = this.form.get(`${name}`)?.value;
-
-            data.forEach((datum) => {
-              const formField = this.form.get(`${field}`);
-              const isExist = data.find((datum) =>
-                datum.value.includes(parentValue)
-              );
-
-              if (datum.role === 'disable') {
-                isExist
-                  ? formField?.disable({ emitEvent: true })
-                  : formField?.enable({ emitEvent: true });
-              }
-
-              if (datum.role === 'enable') {
-                isExist
-                  ? formField?.enable({ emitEvent: true })
-                  : formField?.disable({ emitEvent: true });
-              }
-
-              // ! TO DO: call the related service visibilityAction method for 'show' & 'hide'
-            });
-          });
-        })
-      ) ?? of(undefined)
-    );
-  }
-
-  private listenFormAutoSetValues(): Observable<unknown | undefined> {
-    const { name, autoSet } = this.element;
-
-    return (
-      this.getFormValueChanges(name)?.pipe(
-        tap(() => {
-          autoSet?.forEach((set) => {
-            const { data, field, parentField, type } = set;
-            const parentValue = this.form.get(`${name}`)?.value;
-            const parentFieldControl = <FormArray>(
-              this.form.get(`${parentField}`)
-            );
-            let setValue: unknown;
-
-            // ! TO DO: add other type of listeners
-            if (type === 'include') {
-              const isExist = data.find((datum) =>
-                datum.value.includes(parentValue)
-              );
-
-              if (isExist) {
-                setValue = isExist.set;
-              }
-            }
-
-            if (setValue) {
-              this.form.get(`${field}`)?.patchValue(setValue, {
-                emitEvent: true
-              });
-
-              parentFieldControl?.controls.forEach((parentCtrl) => {
-                parentCtrl.get(`${field}`)?.patchValue(setValue, {
-                  emitEvent: true
-                });
-              });
-            }
-          });
-        })
-      ) ?? of(undefined)
-    );
-  }
-
-  private listenFormControlRelations(): Observable<unknown | undefined> {
-    const { name, relations } = this.element;
-
-    return (
-      this.getFormValueChanges(name)?.pipe(
-        tap(() => {
-          relations?.forEach((relation) => {
-            this.form.get(`${relation.field}`)?.updateValueAndValidity();
-            this.form.get(`${relation.field}`)?.markAsTouched();
-          });
-        })
-      ) ?? of(undefined)
-    );
-  }
-
-  private addFormCustomValidators(): Observable<void> {
+  private addFormCustomValidators(): void {
     const { name, relations, nesting } = this.element;
 
     relations?.forEach((relation) => {
@@ -245,8 +150,115 @@ export class NdfDynamicFormBuilderService {
         nestFormControl?.updateValueAndValidity();
       });
     });
+  }
 
-    return of();
+  private listenFormActions(): Observable<
+    FormFieldAcceptableValue | undefined
+  > {
+    const { name, actions } = this.element;
+
+    return (
+      this.getFormValueChanges(name)?.pipe(
+        tap((value: FormFieldAcceptableValue) => {
+          actions?.forEach((action) => {
+            const { data, field } = action;
+
+            data.forEach((datum) => {
+              const formField = this.form.get(`${field}`);
+              const isExist = data.find((datum) => datum.value.includes(value));
+
+              if (datum.role === 'disable') {
+                isExist
+                  ? formField?.disable({ emitEvent: true })
+                  : formField?.enable({ emitEvent: true });
+              }
+
+              if (datum.role === 'enable') {
+                isExist
+                  ? formField?.enable({ emitEvent: true })
+                  : formField?.disable({ emitEvent: true });
+              }
+
+              // ! TO DO: call the related service visibilityAction method for 'show' & 'hide'
+            });
+          });
+        })
+      ) ?? of(undefined)
+    );
+  }
+
+  private listenFormAutoSetValues(): Observable<
+    FormFieldAcceptableValue | undefined
+  > {
+    const { name, autoSet } = this.element;
+
+    return (
+      this.getFormValueChanges(name)?.pipe(
+        tap((value: FormFieldAcceptableValue) => {
+          autoSet?.forEach((auto) => {
+            const { data, field, parentField, type } = auto;
+            const parentFieldControl = <FormArray>(
+              this.form.get(`${parentField}`)
+            );
+
+            const autoSetData: FormFieldAutoSetData | undefined = data.find(
+              (datum) => {
+                const dataValue = datum.value;
+
+                switch (type) {
+                  case 'greater':
+                    return dataValue[0] < value;
+                  case 'less':
+                    return dataValue[0] > value;
+                  case 'equal':
+                    return dataValue[0] === value;
+                  case 'include':
+                  default:
+                    return dataValue.includes(value);
+                }
+              }
+            );
+
+            if (!autoSetData) return;
+
+            const { set, overwrite } = autoSetData;
+
+            const setValue = overwrite
+              ? set
+              : this.form.get(`${field}`)?.value || set;
+
+            if (setValue) {
+              this.form.get(`${field}`)?.patchValue(setValue, {
+                emitEvent: true
+              });
+
+              parentFieldControl?.controls.forEach((parentCtrl) => {
+                parentCtrl.get(`${field}`)?.patchValue(setValue, {
+                  emitEvent: true
+                });
+              });
+            }
+          });
+        })
+      ) ?? of(undefined)
+    );
+  }
+
+  private listenFormControlRelations(): Observable<
+    FormFieldAcceptableValue | undefined
+  > {
+    const { name, relations } = this.element;
+
+    return (
+      this.getFormValueChanges(name)?.pipe(
+        tap(() => {
+          relations?.forEach((relation) => {
+            this.form.get(`${relation.field}`)?.updateValueAndValidity();
+            this.form.get(`${relation.field}`)?.markAsTouched();
+          });
+        })
+      ) ?? of(undefined)
+    );
   }
 
   private collapseNestingData(data: FormField[]): FormField[] {
@@ -271,7 +283,9 @@ export class NdfDynamicFormBuilderService {
     }, []);
   }
 
-  private getFormValueChanges(name: string): Observable<unknown> | undefined {
+  private getFormValueChanges(
+    name: string
+  ): Observable<FormFieldAcceptableValue> | undefined {
     return this.form
       .get(`${name}`)
       ?.valueChanges.pipe(distinctUntilChanged(), debounceTime(10));

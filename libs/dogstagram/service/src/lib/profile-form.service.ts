@@ -99,15 +99,16 @@ export class ProfileFormService {
             {
               disable: false,
               group: 'single',
+              isHint: true,
               name: 'criteria',
               order: 1,
               type: 'radio',
-              value: 1,
               visible: true
             },
             {
               disable: false,
               group: 'single',
+              isHint: true,
               name: 'amount',
               order: 2,
               type: 'textbox',
@@ -190,6 +191,7 @@ export class ProfileFormService {
             {
               disable: false,
               group: 'single',
+              isHint: true,
               name: 'cost',
               order: 3,
               type: 'radio',
@@ -199,6 +201,7 @@ export class ProfileFormService {
             {
               disable: false,
               group: 'single',
+              isHint: true,
               name: 'kind',
               order: 2,
               relations: [
@@ -242,10 +245,12 @@ export class ProfileFormService {
                 {
                   data: [
                     {
+                      overwrite: true,
                       set: 1,
                       value: ['rabobank']
                     },
                     {
+                      overwrite: true,
                       set: 3,
                       value: ['others']
                     }
@@ -256,6 +261,7 @@ export class ProfileFormService {
               ],
               disable: false,
               group: 'single',
+              isHint: true,
               name: 'name',
               order: 1,
               relations: [
@@ -304,10 +310,12 @@ export class ProfileFormService {
                 {
                   data: [
                     {
+                      overwrite: true,
                       set: 1,
                       value: [1, 2]
                     },
                     {
+                      overwrite: true,
                       set: 3,
                       value: [3]
                     }
@@ -318,10 +326,56 @@ export class ProfileFormService {
                 {
                   data: [
                     {
+                      overwrite: true,
+                      set: 'this value is higher than 2',
+                      value: [2]
+                    }
+                  ],
+                  field: 'name',
+                  type: 'greater'
+                },
+                {
+                  data: [
+                    {
+                      overwrite: true,
+                      set: 'this value is equal to 2',
+                      value: [2]
+                    }
+                  ],
+                  field: 'name',
+                  type: 'equal'
+                },
+                {
+                  data: [
+                    {
+                      overwrite: true,
+                      set: 'this value is less than 2',
+                      value: [2]
+                    }
+                  ],
+                  field: 'name',
+                  type: 'less'
+                },
+                {
+                  data: [
+                    {
+                      overwrite: false,
+                      set: 'this value will not be over written!',
+                      value: [3]
+                    }
+                  ],
+                  field: 'kind',
+                  type: 'include'
+                },
+                {
+                  data: [
+                    {
+                      overwrite: true,
                       set: 11,
                       value: [1, 2]
                     },
                     {
+                      overwrite: true,
                       set: 33,
                       value: [3]
                     }
@@ -333,6 +387,7 @@ export class ProfileFormService {
               ],
               disable: false,
               group: 'single',
+              isHint: true,
               name: 'quality',
               order: 4,
               relations: [
